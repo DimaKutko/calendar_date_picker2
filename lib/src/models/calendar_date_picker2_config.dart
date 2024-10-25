@@ -73,29 +73,27 @@ typedef ScrollViewMonthYearBuilder = Widget Function(DateTime monthDate);
 /// Builder for the mode picker widget
 ///
 /// [isMonthPicker] will be true if function is called to build month picker
-typedef ModePickerBuilder = Widget? Function(
-    {required DateTime monthDate, bool? isMonthPicker});
+typedef ModePickerBuilder = Widget? Function({required DateTime monthDate, bool? isMonthPicker});
 
 /// Predicate to determine the day widget box decoration for a day in selected range
 typedef SelectedRangeDecorationPredicate = BoxDecoration? Function({
-  DateTime dayToBuild,
-  Decoration decoration,
-  bool isStartDate,
-  bool isEndDate,
+  required DateTime dayToBuild,
+  required Decoration decoration,
+  required bool isStartDate,
+  required bool isEndDate,
 });
 
 /// Function to provide full control over range picker highlight
 typedef SelectedRangeHighlightBuilder = Widget Function({
-  DateTime dayToBuild,
-  bool isStartDate,
-  bool isEndDate,
+  required DateTime dayToBuild,
+  required bool isStartDate,
+  required bool isEndDate,
 });
 
 /// Handler for the text displayed in the mode picker
 ///
 /// [isMonthPicker] will be true if function is called for month picker text
-typedef ModePickerTextHandler = String? Function(
-    {required DateTime monthDate, bool? isMonthPicker});
+typedef ModePickerTextHandler = String? Function({required DateTime monthDate, bool? isMonthPicker});
 
 /// Callback for the scroll calendar view on scrolling
 typedef ScrollViewOnScrolling = void Function(double offset);
@@ -186,8 +184,7 @@ class CalendarDatePicker2Config {
     this.selectedRangeDecorationPredicate,
   })  : calendarType = calendarType ?? CalendarDatePicker2Type.single,
         firstDate = DateUtils.dateOnly(firstDate ?? DateTime(1970)),
-        lastDate =
-            DateUtils.dateOnly(lastDate ?? DateTime(DateTime.now().year + 50)),
+        lastDate = DateUtils.dateOnly(lastDate ?? DateTime(DateTime.now().year + 50)),
         currentDate = currentDate ?? DateUtils.dateOnly(DateTime.now()),
         calendarViewMode = calendarViewMode ?? CalendarDatePicker2Mode.day;
 
@@ -480,104 +477,73 @@ class CalendarDatePicker2Config {
       currentDate: currentDate ?? this.currentDate,
       calendarViewMode: calendarViewMode ?? this.calendarViewMode,
       weekdayLabels: weekdayLabels ?? this.weekdayLabels,
-      weekdayLabelTextStyle:
-          weekdayLabelTextStyle ?? this.weekdayLabelTextStyle,
+      weekdayLabelTextStyle: weekdayLabelTextStyle ?? this.weekdayLabelTextStyle,
       weekdayLabelBuilder: weekdayLabelBuilder ?? this.weekdayLabelBuilder,
       firstDayOfWeek: firstDayOfWeek ?? this.firstDayOfWeek,
       controlsHeight: controlsHeight ?? this.controlsHeight,
       lastMonthIcon: lastMonthIcon ?? this.lastMonthIcon,
       nextMonthIcon: nextMonthIcon ?? this.nextMonthIcon,
       controlsTextStyle: controlsTextStyle ?? this.controlsTextStyle,
-      animateToDisplayedMonthDate:
-          animateToDisplayedMonthDate ?? this.animateToDisplayedMonthDate,
+      animateToDisplayedMonthDate: animateToDisplayedMonthDate ?? this.animateToDisplayedMonthDate,
       dayViewController: dayViewController ?? this.dayViewController,
       dayTextStyle: dayTextStyle ?? this.dayTextStyle,
       selectedDayTextStyle: selectedDayTextStyle ?? this.selectedDayTextStyle,
-      selectedDayHighlightColor:
-          selectedDayHighlightColor ?? this.selectedDayHighlightColor,
-      selectedRangeHighlightColor:
-          selectedRangeHighlightColor ?? this.selectedRangeHighlightColor,
+      selectedDayHighlightColor: selectedDayHighlightColor ?? this.selectedDayHighlightColor,
+      selectedRangeHighlightColor: selectedRangeHighlightColor ?? this.selectedRangeHighlightColor,
       disabledDayTextStyle: disabledDayTextStyle ?? this.disabledDayTextStyle,
       todayTextStyle: todayTextStyle ?? this.todayTextStyle,
       yearTextStyle: yearTextStyle ?? this.yearTextStyle,
-      selectedYearTextStyle:
-          selectedYearTextStyle ?? this.selectedYearTextStyle,
-      disabledYearTextStyle:
-          disabledYearTextStyle ?? this.disabledYearTextStyle,
-      selectedRangeDayTextStyle:
-          selectedRangeDayTextStyle ?? this.selectedRangeDayTextStyle,
+      selectedYearTextStyle: selectedYearTextStyle ?? this.selectedYearTextStyle,
+      disabledYearTextStyle: disabledYearTextStyle ?? this.disabledYearTextStyle,
+      selectedRangeDayTextStyle: selectedRangeDayTextStyle ?? this.selectedRangeDayTextStyle,
       monthTextStyle: monthTextStyle ?? this.monthTextStyle,
-      selectedMonthTextStyle:
-          selectedMonthTextStyle ?? this.selectedMonthTextStyle,
-      disabledMonthTextStyle:
-          disabledMonthTextStyle ?? this.disabledMonthTextStyle,
+      selectedMonthTextStyle: selectedMonthTextStyle ?? this.selectedMonthTextStyle,
+      disabledMonthTextStyle: disabledMonthTextStyle ?? this.disabledMonthTextStyle,
       dayBorderRadius: dayBorderRadius ?? this.dayBorderRadius,
       yearBorderRadius: yearBorderRadius ?? this.yearBorderRadius,
       monthBorderRadius: monthBorderRadius ?? this.monthBorderRadius,
-      selectableDayPredicate:
-          selectableDayPredicate ?? this.selectableDayPredicate,
-      selectableMonthPredicate:
-          selectableMonthPredicate ?? this.selectableMonthPredicate,
-      selectableYearPredicate:
-          selectableYearPredicate ?? this.selectableYearPredicate,
-      dayTextStylePredicate:
-          dayTextStylePredicate ?? this.dayTextStylePredicate,
+      selectableDayPredicate: selectableDayPredicate ?? this.selectableDayPredicate,
+      selectableMonthPredicate: selectableMonthPredicate ?? this.selectableMonthPredicate,
+      selectableYearPredicate: selectableYearPredicate ?? this.selectableYearPredicate,
+      dayTextStylePredicate: dayTextStylePredicate ?? this.dayTextStylePredicate,
       dayBuilder: dayBuilder ?? this.dayBuilder,
       yearBuilder: yearBuilder ?? this.yearBuilder,
       monthBuilder: monthBuilder ?? this.monthBuilder,
       monthViewController: monthViewController ?? this.monthViewController,
       yearViewController: yearViewController ?? this.yearViewController,
       disableModePicker: disableModePicker ?? this.disableModePicker,
-      centerAlignModePicker:
-          centerAlignModePicker ?? this.centerAlignModePicker,
+      centerAlignModePicker: centerAlignModePicker ?? this.centerAlignModePicker,
       customModePickerIcon: customModePickerIcon ?? this.customModePickerIcon,
-      modePickerTextHandler:
-          modePickerTextHandler ?? this.modePickerTextHandler,
+      modePickerTextHandler: modePickerTextHandler ?? this.modePickerTextHandler,
       modePickerBuilder: modePickerBuilder ?? this.modePickerBuilder,
       modePickersGap: modePickersGap ?? this.modePickersGap,
       rangeBidirectional: rangeBidirectional ?? this.rangeBidirectional,
-      calendarViewScrollPhysics:
-          calendarViewScrollPhysics ?? this.calendarViewScrollPhysics,
+      calendarViewScrollPhysics: calendarViewScrollPhysics ?? this.calendarViewScrollPhysics,
       daySplashColor: daySplashColor ?? this.daySplashColor,
-      allowSameValueSelection:
-          allowSameValueSelection ?? this.allowSameValueSelection,
+      allowSameValueSelection: allowSameValueSelection ?? this.allowSameValueSelection,
       disableMonthPicker: disableMonthPicker ?? this.disableMonthPicker,
-      useAbbrLabelForMonthModePicker:
-          useAbbrLabelForMonthModePicker ?? this.useAbbrLabelForMonthModePicker,
+      useAbbrLabelForMonthModePicker: useAbbrLabelForMonthModePicker ?? this.useAbbrLabelForMonthModePicker,
       dayMaxWidth: dayMaxWidth ?? this.dayMaxWidth,
-      hideMonthPickerDividers:
-          hideMonthPickerDividers ?? this.hideMonthPickerDividers,
-      hideYearPickerDividers:
-          hideYearPickerDividers ?? this.hideYearPickerDividers,
-      scrollViewTopHeaderTextStyle:
-          scrollViewTopHeaderTextStyle ?? this.scrollViewTopHeaderTextStyle,
-      hideScrollViewTopHeader:
-          hideScrollViewTopHeader ?? this.hideScrollViewTopHeader,
-      hideScrollViewTopHeaderDivider:
-          hideScrollViewTopHeaderDivider ?? this.hideScrollViewTopHeaderDivider,
-      hideScrollViewMonthWeekHeader:
-          hideScrollViewMonthWeekHeader ?? this.hideScrollViewMonthWeekHeader,
-      scrollViewConstraints:
-          scrollViewConstraints ?? this.scrollViewConstraints,
-      scrollViewMonthYearBuilder:
-          scrollViewMonthYearBuilder ?? this.scrollViewMonthYearBuilder,
-      scrollViewOnScrolling:
-          scrollViewOnScrolling ?? this.scrollViewOnScrolling,
+      hideMonthPickerDividers: hideMonthPickerDividers ?? this.hideMonthPickerDividers,
+      hideYearPickerDividers: hideYearPickerDividers ?? this.hideYearPickerDividers,
+      scrollViewTopHeaderTextStyle: scrollViewTopHeaderTextStyle ?? this.scrollViewTopHeaderTextStyle,
+      hideScrollViewTopHeader: hideScrollViewTopHeader ?? this.hideScrollViewTopHeader,
+      hideScrollViewTopHeaderDivider: hideScrollViewTopHeaderDivider ?? this.hideScrollViewTopHeaderDivider,
+      hideScrollViewMonthWeekHeader: hideScrollViewMonthWeekHeader ?? this.hideScrollViewMonthWeekHeader,
+      scrollViewConstraints: scrollViewConstraints ?? this.scrollViewConstraints,
+      scrollViewMonthYearBuilder: scrollViewMonthYearBuilder ?? this.scrollViewMonthYearBuilder,
+      scrollViewOnScrolling: scrollViewOnScrolling ?? this.scrollViewOnScrolling,
       scrollViewController: scrollViewController ?? this.scrollViewController,
       dynamicCalendarRows: dynamicCalendarRows ?? this.dynamicCalendarRows,
-      dayModeScrollDirection:
-          dayModeScrollDirection ?? this.dayModeScrollDirection,
-      selectedRangeHighlightBuilder:
-          selectedRangeHighlightBuilder ?? this.selectedRangeHighlightBuilder,
-      selectedRangeDecorationPredicate: selectedRangeDecorationPredicate ??
-          this.selectedRangeDecorationPredicate,
+      dayModeScrollDirection: dayModeScrollDirection ?? this.dayModeScrollDirection,
+      selectedRangeHighlightBuilder: selectedRangeHighlightBuilder ?? this.selectedRangeHighlightBuilder,
+      selectedRangeDecorationPredicate: selectedRangeDecorationPredicate ?? this.selectedRangeDecorationPredicate,
     );
   }
 }
 
 /// Custom configuration for CalendarDatePicker2 with action buttons
-class CalendarDatePicker2WithActionButtonsConfig
-    extends CalendarDatePicker2Config {
+class CalendarDatePicker2WithActionButtonsConfig extends CalendarDatePicker2Config {
   CalendarDatePicker2WithActionButtonsConfig({
     CalendarDatePicker2Type? calendarType,
     DateTime? firstDate,
@@ -838,110 +804,76 @@ class CalendarDatePicker2WithActionButtonsConfig
       currentDate: currentDate ?? this.currentDate,
       calendarViewMode: calendarViewMode ?? this.calendarViewMode,
       weekdayLabels: weekdayLabels ?? this.weekdayLabels,
-      weekdayLabelTextStyle:
-          weekdayLabelTextStyle ?? this.weekdayLabelTextStyle,
+      weekdayLabelTextStyle: weekdayLabelTextStyle ?? this.weekdayLabelTextStyle,
       weekdayLabelBuilder: weekdayLabelBuilder ?? this.weekdayLabelBuilder,
       firstDayOfWeek: firstDayOfWeek ?? this.firstDayOfWeek,
       controlsHeight: controlsHeight ?? this.controlsHeight,
       lastMonthIcon: lastMonthIcon ?? this.lastMonthIcon,
       nextMonthIcon: nextMonthIcon ?? this.nextMonthIcon,
       controlsTextStyle: controlsTextStyle ?? this.controlsTextStyle,
-      animateToDisplayedMonthDate:
-          animateToDisplayedMonthDate ?? this.animateToDisplayedMonthDate,
+      animateToDisplayedMonthDate: animateToDisplayedMonthDate ?? this.animateToDisplayedMonthDate,
       dayViewController: dayViewController ?? this.dayViewController,
       dayTextStyle: dayTextStyle ?? this.dayTextStyle,
       selectedDayTextStyle: selectedDayTextStyle ?? this.selectedDayTextStyle,
-      selectedRangeDayTextStyle:
-          selectedRangeDayTextStyle ?? this.selectedRangeDayTextStyle,
-      selectedDayHighlightColor:
-          selectedDayHighlightColor ?? this.selectedDayHighlightColor,
-      selectedRangeHighlightColor:
-          selectedRangeHighlightColor ?? this.selectedRangeHighlightColor,
+      selectedRangeDayTextStyle: selectedRangeDayTextStyle ?? this.selectedRangeDayTextStyle,
+      selectedDayHighlightColor: selectedDayHighlightColor ?? this.selectedDayHighlightColor,
+      selectedRangeHighlightColor: selectedRangeHighlightColor ?? this.selectedRangeHighlightColor,
       disabledDayTextStyle: disabledDayTextStyle ?? this.disabledDayTextStyle,
       todayTextStyle: todayTextStyle ?? this.todayTextStyle,
       yearTextStyle: yearTextStyle ?? this.yearTextStyle,
-      selectedYearTextStyle:
-          selectedYearTextStyle ?? this.selectedYearTextStyle,
-      disabledYearTextStyle:
-          disabledYearTextStyle ?? this.disabledYearTextStyle,
+      selectedYearTextStyle: selectedYearTextStyle ?? this.selectedYearTextStyle,
+      disabledYearTextStyle: disabledYearTextStyle ?? this.disabledYearTextStyle,
       monthTextStyle: monthTextStyle ?? this.monthTextStyle,
-      selectedMonthTextStyle:
-          selectedMonthTextStyle ?? this.selectedMonthTextStyle,
-      disabledMonthTextStyle:
-          disabledMonthTextStyle ?? this.disabledMonthTextStyle,
+      selectedMonthTextStyle: selectedMonthTextStyle ?? this.selectedMonthTextStyle,
+      disabledMonthTextStyle: disabledMonthTextStyle ?? this.disabledMonthTextStyle,
       dayBorderRadius: dayBorderRadius ?? this.dayBorderRadius,
       yearBorderRadius: yearBorderRadius ?? this.yearBorderRadius,
       monthBorderRadius: monthBorderRadius ?? this.monthBorderRadius,
-      selectableDayPredicate:
-          selectableDayPredicate ?? this.selectableDayPredicate,
-      selectableMonthPredicate:
-          selectableMonthPredicate ?? this.selectableMonthPredicate,
-      selectableYearPredicate:
-          selectableYearPredicate ?? this.selectableYearPredicate,
-      dayTextStylePredicate:
-          dayTextStylePredicate ?? this.dayTextStylePredicate,
+      selectableDayPredicate: selectableDayPredicate ?? this.selectableDayPredicate,
+      selectableMonthPredicate: selectableMonthPredicate ?? this.selectableMonthPredicate,
+      selectableYearPredicate: selectableYearPredicate ?? this.selectableYearPredicate,
+      dayTextStylePredicate: dayTextStylePredicate ?? this.dayTextStylePredicate,
       dayBuilder: dayBuilder ?? this.dayBuilder,
       yearBuilder: yearBuilder ?? this.yearBuilder,
       monthBuilder: monthBuilder ?? this.monthBuilder,
       monthViewController: monthViewController ?? this.monthViewController,
       yearViewController: yearViewController ?? this.yearViewController,
       disableModePicker: disableModePicker ?? this.disableModePicker,
-      centerAlignModePicker:
-          centerAlignModePicker ?? this.centerAlignModePicker,
+      centerAlignModePicker: centerAlignModePicker ?? this.centerAlignModePicker,
       customModePickerIcon: customModePickerIcon ?? this.customModePickerIcon,
-      modePickerTextHandler:
-          modePickerTextHandler ?? this.modePickerTextHandler,
+      modePickerTextHandler: modePickerTextHandler ?? this.modePickerTextHandler,
       modePickerBuilder: modePickerBuilder ?? this.modePickerBuilder,
       modePickersGap: modePickersGap ?? this.modePickersGap,
       rangeBidirectional: rangeBidirectional ?? this.rangeBidirectional,
-      gapBetweenCalendarAndButtons:
-          gapBetweenCalendarAndButtons ?? this.gapBetweenCalendarAndButtons,
-      cancelButtonTextStyle:
-          cancelButtonTextStyle ?? this.cancelButtonTextStyle,
+      gapBetweenCalendarAndButtons: gapBetweenCalendarAndButtons ?? this.gapBetweenCalendarAndButtons,
+      cancelButtonTextStyle: cancelButtonTextStyle ?? this.cancelButtonTextStyle,
       cancelButton: cancelButton ?? this.cancelButton,
       okButtonTextStyle: okButtonTextStyle ?? this.okButtonTextStyle,
       okButton: okButton ?? this.okButton,
       openedFromDialog: openedFromDialog ?? this.openedFromDialog,
-      closeDialogOnCancelTapped:
-          closeDialogOnCancelTapped ?? this.closeDialogOnCancelTapped,
-      closeDialogOnOkTapped:
-          closeDialogOnOkTapped ?? this.closeDialogOnOkTapped,
+      closeDialogOnCancelTapped: closeDialogOnCancelTapped ?? this.closeDialogOnCancelTapped,
+      closeDialogOnOkTapped: closeDialogOnOkTapped ?? this.closeDialogOnOkTapped,
       buttonPadding: buttonPadding ?? this.buttonPadding,
-      calendarViewScrollPhysics:
-          calendarViewScrollPhysics ?? this.calendarViewScrollPhysics,
+      calendarViewScrollPhysics: calendarViewScrollPhysics ?? this.calendarViewScrollPhysics,
       daySplashColor: daySplashColor ?? this.daySplashColor,
-      allowSameValueSelection:
-          allowSameValueSelection ?? this.allowSameValueSelection,
+      allowSameValueSelection: allowSameValueSelection ?? this.allowSameValueSelection,
       disableMonthPicker: disableMonthPicker ?? this.disableMonthPicker,
-      useAbbrLabelForMonthModePicker:
-          useAbbrLabelForMonthModePicker ?? this.useAbbrLabelForMonthModePicker,
+      useAbbrLabelForMonthModePicker: useAbbrLabelForMonthModePicker ?? this.useAbbrLabelForMonthModePicker,
       dayMaxWidth: dayMaxWidth ?? this.dayMaxWidth,
-      hideMonthPickerDividers:
-          hideMonthPickerDividers ?? this.hideMonthPickerDividers,
-      hideYearPickerDividers:
-          hideYearPickerDividers ?? this.hideYearPickerDividers,
-      scrollViewTopHeaderTextStyle:
-          scrollViewTopHeaderTextStyle ?? this.scrollViewTopHeaderTextStyle,
-      hideScrollViewTopHeader:
-          hideScrollViewTopHeader ?? this.hideScrollViewTopHeader,
-      hideScrollViewTopHeaderDivider:
-          hideScrollViewTopHeaderDivider ?? this.hideScrollViewTopHeaderDivider,
-      hideScrollViewMonthWeekHeader:
-          hideScrollViewMonthWeekHeader ?? this.hideScrollViewMonthWeekHeader,
-      scrollViewConstraints:
-          scrollViewConstraints ?? this.scrollViewConstraints,
-      scrollViewMonthYearBuilder:
-          scrollViewMonthYearBuilder ?? this.scrollViewMonthYearBuilder,
-      scrollViewOnScrolling:
-          scrollViewOnScrolling ?? this.scrollViewOnScrolling,
+      hideMonthPickerDividers: hideMonthPickerDividers ?? this.hideMonthPickerDividers,
+      hideYearPickerDividers: hideYearPickerDividers ?? this.hideYearPickerDividers,
+      scrollViewTopHeaderTextStyle: scrollViewTopHeaderTextStyle ?? this.scrollViewTopHeaderTextStyle,
+      hideScrollViewTopHeader: hideScrollViewTopHeader ?? this.hideScrollViewTopHeader,
+      hideScrollViewTopHeaderDivider: hideScrollViewTopHeaderDivider ?? this.hideScrollViewTopHeaderDivider,
+      hideScrollViewMonthWeekHeader: hideScrollViewMonthWeekHeader ?? this.hideScrollViewMonthWeekHeader,
+      scrollViewConstraints: scrollViewConstraints ?? this.scrollViewConstraints,
+      scrollViewMonthYearBuilder: scrollViewMonthYearBuilder ?? this.scrollViewMonthYearBuilder,
+      scrollViewOnScrolling: scrollViewOnScrolling ?? this.scrollViewOnScrolling,
       scrollViewController: scrollViewController ?? this.scrollViewController,
       dynamicCalendarRows: dynamicCalendarRows ?? this.dynamicCalendarRows,
-      dayModeScrollDirection:
-          dayModeScrollDirection ?? this.dayModeScrollDirection,
-      selectedRangeHighlightBuilder:
-          selectedRangeHighlightBuilder ?? this.selectedRangeHighlightBuilder,
-      selectedRangeDecorationPredicate: selectedRangeDecorationPredicate ??
-          this.selectedRangeDecorationPredicate,
+      dayModeScrollDirection: dayModeScrollDirection ?? this.dayModeScrollDirection,
+      selectedRangeHighlightBuilder: selectedRangeHighlightBuilder ?? this.selectedRangeHighlightBuilder,
+      selectedRangeDecorationPredicate: selectedRangeDecorationPredicate ?? this.selectedRangeDecorationPredicate,
     );
   }
 }
